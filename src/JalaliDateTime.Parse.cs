@@ -156,7 +156,7 @@ namespace hmlib.PersianDate
 				.OrderByDescending(k => k.Length)
 				.Select(Regex.Escape)));
 
-			var pattern = tokenRegex.Replace(format, match => tokenMap[match.Value]);
+			var pattern = tokenRegex.Replace(format, m => tokenMap[m.Value]);
 			pattern = "^" + pattern + "$";
 			var regex = new Regex(pattern);
 			var match = regex.Match(s);
