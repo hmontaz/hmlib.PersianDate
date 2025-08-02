@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Text;
 
@@ -16,7 +16,7 @@ namespace hmlib.PersianDate.Utilities
 		{
 			HighPerformance = highPerformance;
 		}
-		Dictionary<int, long> dic = new Dictionary<int, long>();
+		ConcurrentDictionary<int, long> dic = new ConcurrentDictionary<int, long>();
 		public abstract void StartDate(out int year, out int month, out int day);
 		public abstract int DaysInYear(int year);
 		public abstract int DaysInMonth(int year, int month);

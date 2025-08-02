@@ -1,37 +1,53 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-	<LangVersion>8.0</LangVersion>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>8.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/hmontaz/hmlib.PersianDate</RepositoryUrl>
+		<Authors>Hossein Montazeri</Authors>
+		<Company>Hossein Montazeri</Company>
+		<Description>Library for working with Jalali (Persian) dates in .NET.</Description>
+		<PackageId>hmlib.PersianDate</PackageId>
+		<PackageVersion>1.0.0</PackageVersion>
+		<AssemblyName>hmlib.PersianDate</AssemblyName>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>false</GenerateDocumentationFile>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<NoWarn>NU1603</NoWarn>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<Copyright>Copyright © 2025 Hossein Montazeri</Copyright>
+		<PackageTags>Jalali;Persian;Date;Calendar;DateTime</PackageTags>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Globalization\_temp\**" />
-    <Compile Remove="_temp\**" />
-    <EmbeddedResource Remove="Globalization\_temp\**" />
-    <EmbeddedResource Remove="_temp\**" />
-    <None Remove="Globalization\_temp\**" />
-    <None Remove="_temp\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Globalization\_temp\**" />
+		<Compile Remove="_temp\**" />
+		<EmbeddedResource Remove="Globalization\_temp\**" />
+		<EmbeddedResource Remove="_temp\**" />
+		<None Remove="Globalization\_temp\**" />
+		<None Remove="_temp\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Globalization\DateTimeHelper1.cache.cs" />
-    <Compile Remove="Globalization\DateTimeHelper1.cs" />
-    <Compile Remove="Globalization\DateTimeHelper2.cache.cs" />
-    <Compile Remove="Globalization\DateTimeHelper2.cs" />
-    <Compile Remove="Globalization\GregorianHelper.cs" />
-    <Compile Remove="Globalization\JalaliCalendar.cs" />
-    <Compile Remove="Globalization\JalaliCalendarAlt.cs" />
-    <Compile Remove="JalaliDateTime.Private.cs" />
-    <Compile Remove="JalaliDateTimeFormatProvider.cs" />
-    <Compile Remove="JalaliDateTime_PersianDate.cs" />
-    <Compile Remove="JalaliDateTime_UsingCalendar.cs" />
-    <Compile Remove="Utilities\DateTools.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Globalization\DateTimeHelper1.cache.cs" />
+		<Compile Remove="Globalization\DateTimeHelper1.cs" />
+		<Compile Remove="Globalization\DateTimeHelper2.cache.cs" />
+		<Compile Remove="Globalization\DateTimeHelper2.cs" />
+		<Compile Remove="Globalization\GregorianHelper.cs" />
+		<Compile Remove="Globalization\JalaliCalendar.cs" />
+		<Compile Remove="Globalization\JalaliCalendarAlt.cs" />
+		<Compile Remove="JalaliDateTime.Private.cs" />
+		<Compile Remove="JalaliDateTimeFormatProvider.cs" />
+		<Compile Remove="JalaliDateTime_PersianDate.cs" />
+		<Compile Remove="JalaliDateTime_UsingCalendar.cs" />
+		<Compile Remove="Utilities\DateTools.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="Globalization\_temp\JalaliLeapYears.xlsx" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<None Include="Globalization\_temp\JalaliLeapYears.xlsx" />
+		<None Include="README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
 </Project>

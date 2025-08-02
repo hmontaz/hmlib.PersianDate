@@ -11,7 +11,7 @@ namespace hmlib.PersianDate
 {
 	internal class JalaliDateTimeFormat
 	{
-		public static string Format(JalaliDateTime j, string format, IFormatProvider formatProvider)
+		public static string Format(JalaliDateTime j, string? format, IFormatProvider? formatProvider)
 		{
 			format = getFormat(format, formatProvider);
 			var formatInfo = new JalaliDateTimeFormatInfo(formatProvider);
@@ -110,7 +110,7 @@ namespace hmlib.PersianDate
 			return formatInfo.MonthNames.ToArray();
 		}
 
-		private static string getFormat(string format, IFormatProvider formatProvider)
+		private static string getFormat(string? format, IFormatProvider? formatProvider)
 		{
 			switch (format)
 			{
@@ -132,7 +132,7 @@ namespace hmlib.PersianDate
 
 		}
 
-		private static JalaliDateTimeFormatInfo getFormatInfo(IFormatProvider formatProvider)
+		private static JalaliDateTimeFormatInfo getFormatInfo(IFormatProvider? formatProvider)
 		{
 			return new JalaliDateTimeFormatInfo(formatProvider);
 		}

@@ -234,7 +234,7 @@ namespace hmlib.PersianDate
 			return JalaliDateTimeFormat.Format(this, null, formatProvider);
 		}
 
-		public string ToString(string format, IFormatProvider formatProvider)
+		public string ToString(string format, IFormatProvider? formatProvider)
 		{
 			return JalaliDateTimeFormat.Format(this, format, formatProvider);
 		}

@@ -29,7 +29,7 @@ namespace hmlib.PersianDate.Globalization
 
 		}
 
-		public JalaliDateTimeFormatInfo(IFormatProvider formatProvider)
+		public JalaliDateTimeFormatInfo(IFormatProvider? formatProvider)
 			: this((formatProvider is CultureInfo) ? (formatProvider as CultureInfo) : null)
 		{
 			//if (formatProvider != null && formatProvider is CultureInfo)
@@ -42,7 +42,7 @@ namespace hmlib.PersianDate.Globalization
 		/// <summary>
 		/// Initializes a new instance based on a provided base culture.
 		/// </summary>
-		public JalaliDateTimeFormatInfo(CultureInfo baseCulture)
+		public JalaliDateTimeFormatInfo(CultureInfo? baseCulture)
 		{
 			_baseCulture = (CultureInfo)(baseCulture ?? CultureInfo.CurrentCulture).Clone();
 			Calendar = new PersianCalendar();
@@ -134,7 +134,7 @@ namespace hmlib.PersianDate.Globalization
 
 		public object Clone() => MemberwiseClone();
 
-		public object GetFormat(Type formatType)
+		public object? GetFormat(Type formatType)
 		{
 			return formatType == typeof(JalaliDateTimeFormatInfo) || formatType == typeof(IFormatProvider)
 				? this
