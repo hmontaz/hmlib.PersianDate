@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Globalization\_temp\**" />
+    <Compile Remove="_temp\**" />
+    <EmbeddedResource Remove="Globalization\_temp\**" />
+    <EmbeddedResource Remove="_temp\**" />
+    <None Remove="Globalization\_temp\**" />
+    <None Remove="_temp\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Globalization\DateTimeHelper1.cache.cs" />
+    <Compile Remove="Globalization\DateTimeHelper1.cs" />
+    <Compile Remove="Globalization\DateTimeHelper2.cache.cs" />
+    <Compile Remove="Globalization\DateTimeHelper2.cs" />
+    <Compile Remove="Globalization\GregorianHelper.cs" />
+    <Compile Remove="Globalization\JalaliCalendar.cs" />
+    <Compile Remove="Globalization\JalaliCalendarAlt.cs" />
+    <Compile Remove="JalaliDateTime.Private.cs" />
+    <Compile Remove="JalaliDateTimeFormatProvider.cs" />
+    <Compile Remove="JalaliDateTime_PersianDate.cs" />
+    <Compile Remove="JalaliDateTime_UsingCalendar.cs" />
+    <Compile Remove="Utilities\DateTools.cs" />
+  </ItemGroup>
+
+</Project>
