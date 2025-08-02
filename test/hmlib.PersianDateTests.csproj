@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="JalaliDateTimeTests\**" />
+    <EmbeddedResource Remove="JalaliDateTimeTests\**" />
+    <None Remove="JalaliDateTimeTests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="JalaliDateTimeTests\AddTests.cs" />
+    <Compile Include="JalaliDateTimeTests\CastingAndOperators.cs" />
+    <Compile Include="JalaliDateTimeTests\CultureTest.cs" />
+    <Compile Include="JalaliDateTimeTests\FarsiCultureTest.cs" />
+    <Compile Include="JalaliDateTimeTests\InvariantCultureTest.cs" />
+    <Compile Include="JalaliDateTimeTests\ConstructorTests.cs" />
+    <Compile Include="JalaliDateTimeTests\LoopTests.cs" />
+    <Compile Include="JalaliDateTimeTests\JalaliDateTimeTest_Temp.cs" />
+    <Compile Include="JalaliDateTimeTests\KnownDates.cs" />
+    <Compile Include="JalaliDateTimeTests\ParseTests.cs" />
+    <Compile Include="JalaliDateTimeTests\ToStringTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="3.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\hmlib.PersianDate.csproj" />
+  </ItemGroup>
+
+</Project>

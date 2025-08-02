@@ -29,4 +29,8 @@
     <Compile Remove="Utilities\DateTools.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Globalization\_temp\JalaliLeapYears.xlsx" />
+  </ItemGroup>
+
 </Project>
