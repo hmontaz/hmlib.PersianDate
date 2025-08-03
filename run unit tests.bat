@@ -1,0 +1,3 @@
+dotnet test
+@echo off
+echo Press any key to continue...

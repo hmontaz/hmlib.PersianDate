@@ -129,7 +129,7 @@ namespace hmlib.PersianDate
 		/// <param name="result">When this method returns, contains the System.DateTime value equivalent to the date and time contained in s, if the conversion succeeded, or System.DateTime.MinValue if the conversion failed. The conversion fails if s or formats is null, s or an element of formats is an empty string, or the format of s is not exactly as specified by at least one of the format patterns in formats. This parameter is passed uninitialized.</param>
 		/// <returns>true if the s parameter was converted successfully; otherwise, false.</returns>
 		/// <exception cref="System.ArgumentException">styles is not a valid System.Globalization.DateTimeStyles value.-or-styles contains an invalid combination of System.Globalization.DateTimeStyles values (for example, both System.Globalization.DateTimeStyles.AssumeLocal and System.Globalization.DateTimeStyles.AssumeUniversal).</exception>		
-		public static bool TryParseExact(string s, string format, IFormatProvider formatProvider, DateTimeStyles style, out JalaliDateTime result)
+		public static bool TryParseExact(string s, string format, IFormatProvider? formatProvider, DateTimeStyles style, out JalaliDateTime result)
 		{
 			var tokenMap = new Dictionary<string, string>
 			{
@@ -202,7 +202,7 @@ namespace hmlib.PersianDate
 					?? 1;
 		}
 
-		static int getMonth(GroupCollection groups, IFormatProvider formatProvider)
+		static int getMonth(GroupCollection groups, IFormatProvider? formatProvider)
 		{
 			if (!string.IsNullOrEmpty(groups["MMM"].Value))
 			{

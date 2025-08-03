@@ -11,7 +11,7 @@
 		<Company>Hossein Montazeri</Company>
 		<Description>Library for working with Jalali (Persian) dates in .NET.</Description>
 		<PackageId>hmlib.PersianDate</PackageId>
-		<PackageVersion>1.0.0</PackageVersion>
+		<PackageVersion>1.0.1</PackageVersion>
 		<AssemblyName>hmlib.PersianDate</AssemblyName>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>

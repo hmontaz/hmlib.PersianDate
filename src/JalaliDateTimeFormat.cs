@@ -104,7 +104,7 @@ namespace hmlib.PersianDate
 			return sb.ToString();
 		}
 
-		internal static string[] GetMonthNames(IFormatProvider formatProvider)
+		internal static string[] GetMonthNames(IFormatProvider? formatProvider)
 		{
 			var formatInfo = getFormatInfo(formatProvider);
 			return formatInfo.MonthNames.ToArray();
