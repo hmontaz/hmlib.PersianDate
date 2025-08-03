@@ -16,8 +16,8 @@ A lightweight .NET library for working with Jalali (Persian) dates. Provides a f
 ```bash
 dotnet add package hmlib.PersianDate
 ```
-
-```C#
+## 💡 Usage Example
+```csharp
 JalaliDateTime jDate = new DateTime(2024, 01, 01);
 var s1 = jDate.ToString();// "1402/10/11 12:00:00 AM"
 var s2 = jDate.ToString(CultureInfo.GetCultureInfo("en-IR"));// "1402/10/11 12:00:00 AM"
