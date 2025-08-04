@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 523.99999 524"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="nuget_logo.svg"
+   width="524"
+   height="524"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   inkscape:export-filename="nuget.png"
+   inkscape:export-xdpi="11.725191"
+   inkscape:export-ydpi="11.725191"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.2222451"
+     inkscape:cx="238.49553"
+     inkscape:cy="261.40419"
+     inkscape:window-width="1920"
+     inkscape:window-height="1129"
+     inkscape:window-x="4984"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <title
+     id="title1">nuget</title>
+  <metadata
+     id="metadata1">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>nuget</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <path
+     id="path3"
+     style="fill:#1a1a1a;stroke:none;stroke-width:1.00176"
+     d="M 49.663546,6 C 22.310678,6 0,28.334985 0,55.667459 c 0,27.350122 22.315061,49.667461 49.663546,49.667461 27.330836,0 49.663545,-22.312957 49.663545,-49.667461 C 99.327091,28.3306 76.998768,6 49.663546,6 Z M 244.56699,98.12301 c -76.05207,0 -137.89886,61.85347 -137.89886,137.93212 v 141.52634 c 0,76.09868 61.84953,137.91255 137.89886,137.91255 h 141.5322 C 462.18861,515.49402 524,453.67742 524,377.58147 V 236.05513 C 524,159.9792 462.19135,98.12301 386.09919,98.12301 Z m -31.37744,73.97585 c 25.2665,0 45.74072,20.47547 45.74072,45.74451 0,25.25075 -20.47422,45.74262 -45.74072,45.74262 -25.26652,0 -45.73882,-20.49187 -45.73882,-45.74262 0,-25.26904 20.4723,-45.74451 45.73882,-45.74451 z m 169.15888,130.77696 c 42.82148,0 77.53893,34.74214 77.53893,77.54852 0,42.82579 -34.71745,77.5466 -77.53893,77.5466 -42.82147,0 -77.54084,-34.72081 -77.54084,-77.5466 0,-42.80638 34.71937,-77.54852 77.54084,-77.54852 z"
+     sodipodi:nodetypes="ssssssssssssssssssssssss" />
+  <path
+     style="fill:#ff6600;stroke:none;stroke-width:1.00176"
+     d="m 49.663546,13.262778 c -23.426374,0 -42.4007685,18.997154 -42.4007685,42.404681 0,23.428727 18.9743945,42.404681 42.4007685,42.404681 23.405172,0 42.400768,-18.975954 42.400768,-42.404681 0,-23.407527 -18.995596,-42.404682 -42.400768,-42.404681 z M 244.56699,105.38579 c -72.12355,0 -130.63608,58.51734 -130.63608,130.66934 v 141.52634 c 0,72.17319 58.51253,130.64977 130.63608,130.64977 h 141.5322 c 72.16594,0 130.63803,-58.47658 130.63803,-130.64977 V 236.05513 c 0,-72.152 -58.47209,-130.66934 -130.63803,-130.66934 z m -31.37747,59.45029 c 29.27766,0 53.00145,23.72672 53.00145,53.00732 0,29.25941 -23.72379,53.00536 -53.00145,53.00536 -29.27767,0 -52.9995,-23.74595 -52.9995,-53.00536 0,-29.2806 23.72183,-53.00732 52.9995,-53.00732 z m 169.15893,130.77696 c 46.83154,0 84.79958,37.99627 84.79958,84.81132 0,46.83626 -37.96804,84.80936 -84.79958,84.80936 -46.83154,0 -84.80153,-37.9731 -84.80153,-84.80936 0,-46.81505 37.96999,-84.81132 84.80153,-84.81132 z"
+     id="path1" />
+</svg>
