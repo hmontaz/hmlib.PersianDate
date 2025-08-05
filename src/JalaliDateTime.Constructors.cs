@@ -11,6 +11,10 @@ namespace hmlib.PersianDate
 			: this(ticks, DateTimeKind.Unspecified)
 		{
 		}
+		public JalaliDateTime(DateTime dateTime)
+			: this(dateTime.Ticks, dateTime.Kind)
+		{
+		}
 		public JalaliDateTime(long ticks, DateTimeKind kind)
 		{
 			_ticks = ticks;

@@ -1,5 +1,4 @@
-﻿using hmlib.PersianDate.Globalization;
-using hmlib.PersianDate.Utilities;
+﻿using hmlib.PersianDate.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,14 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace hmlib.PersianDate
+namespace hmlib.PersianDate.Globalization
 {
 	internal class JalaliDateTimeFormat
 	{
 		public static string Format(JalaliDateTime j, string? format, IFormatProvider? formatProvider)
 		{
-			format = getFormat(format, formatProvider);
-			var formatInfo = new JalaliDateTimeFormatInfo(formatProvider);
+			format = GetStandardFormat(format, formatProvider);
+			var formatInfo = JalaliDateTimeFormatInfo.GetInstance(formatProvider);
 			//http://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx
 			string yyyy;
 			if (j.Year >= 0)
@@ -35,7 +34,7 @@ namespace hmlib.PersianDate
 			var d = j.Day;
 			var tt = j.Hour < 12 ? formatInfo.AMDesignator : formatInfo.PMDesignator;
 			var H = j.Hour;
-			var h = (j.Hour % 12) == 0 ? 12 : (j.Hour % 12);
+			var h = j.Hour % 12 == 0 ? 12 : j.Hour % 12;
 
 			var m = j.Minute;
 			var s = j.Second;
@@ -104,37 +103,62 @@ namespace hmlib.PersianDate
 			return sb.ToString();
 		}
 
-		internal static string[] GetMonthNames(IFormatProvider? formatProvider)
+		internal static string GetStandardFormat(string? format, IFormatProvider? formatProvider)
 		{
-			var formatInfo = getFormatInfo(formatProvider);
-			return formatInfo.MonthNames.ToArray();
-		}
-
-		private static string getFormat(string? format, IFormatProvider? formatProvider)
-		{
+			var formatInfo = JalaliDateTimeFormatInfo.GetInstance(formatProvider);
 			switch (format)
 			{
 				case null:
 				case "G":
-					var formatInfo = getFormatInfo(formatProvider);
+					// General (long time) => short date + long time
 					return formatInfo.ShortDatePattern + " " + formatInfo.LongTimePattern;
+				case "g":
+					// General (short time) => short date + short time
+					return formatInfo.ShortDatePattern + " " + formatInfo.ShortTimePattern;
 				case "d":
-					return getFormatInfo(formatProvider).ShortDatePattern;
+					return formatInfo.ShortDatePattern;
 				case "D":
-					return getFormatInfo(formatProvider).LongDatePattern;
+					return formatInfo.LongDatePattern;
 				case "t":
-					return getFormatInfo(formatProvider).ShortTimePattern;
+					return formatInfo.ShortTimePattern;
 				case "T":
-					return getFormatInfo(formatProvider).LongTimePattern;
+					return formatInfo.LongTimePattern;
+				case "f":
+					// Full date (long) + short time
+					return formatInfo.LongDatePattern + " " + formatInfo.ShortTimePattern;
+				case "F":
+					// Full date (long) + long time
+					return formatInfo.LongDatePattern + " " + formatInfo.LongTimePattern;
+				case "M":
+				case "m":
+					// Month/day pattern
+					return formatInfo.MonthDayPattern;
+				case "Y":
+				case "y":
+					// Year/month pattern
+					return formatInfo.YearMonthPattern;
+				case "O":
+				case "o":
+					// Round-trip pattern (ISO 8601)
+					return "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK";
+				case "R":
+				case "r":
+					// RFC1123 pattern
+					return "ddd, dd MMM yyyy HH':'mm':'ss 'GMT'";
+				case "s":
+					// Sortable (ISO 8601)
+					return "yyyy'-'MM'-'dd'T'HH':'mm':'ss";
+				case "u":
+					// Universal sortable (UTC)
+					return "yyyy'-'MM'-'dd HH':'mm':'ss'Z'";
+				case "U":
+					// Universal full (long time, UTC)
+					// Same as "F" but caller must convert DateTime to UTC
+					return formatInfo.FullDateTimePattern;
 				default:
 					return format;
 			}
 
-		}
-
-		private static JalaliDateTimeFormatInfo getFormatInfo(IFormatProvider? formatProvider)
-		{
-			return new JalaliDateTimeFormatInfo(formatProvider);
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using hmlib.PersianDate.Utilities;
+﻿using hmlib.PersianDate.Globalization;
+using hmlib.PersianDate.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -29,8 +30,8 @@ namespace hmlib.PersianDate
 		[NonSerialized]
 		TimeSpan _timeOfDay;
 		//---------
-		public static readonly JalaliDateTime MinValue = System.DateTime.MinValue.Date;
-		public static readonly JalaliDateTime MaxValue = System.DateTime.MaxValue.Date;
+		public static readonly JalaliDateTime MinValue = System.DateTime.MinValue;
+		public static readonly JalaliDateTime MaxValue = System.DateTime.MaxValue;
 		//---------
 		public object Clone()
 		{

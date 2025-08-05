@@ -19,9 +19,9 @@
   <ItemGroup>
     <Compile Include="JalaliDateTimeTests\AddTests.cs" />
     <Compile Include="JalaliDateTimeTests\CastingAndOperators.cs" />
-    <Compile Include="JalaliDateTimeTests\CultureTest.cs" />
-    <Compile Include="JalaliDateTimeTests\FarsiCultureTest.cs" />
-    <Compile Include="JalaliDateTimeTests\InvariantCultureTest.cs" />
+    <Compile Include="JalaliDateTimeTests\CultureTests\CultureTest.cs" />
+    <Compile Include="JalaliDateTimeTests\CultureTests\FarsiCultureTest.cs" />
+    <Compile Include="JalaliDateTimeTests\CultureTests\InvariantCultureTest.cs" />
     <Compile Include="JalaliDateTimeTests\ConstructorTests.cs" />
     <Compile Include="JalaliDateTimeTests\LoopTests.cs" />
     <Compile Include="JalaliDateTimeTests\JalaliDateTimeTest_Temp.cs" />

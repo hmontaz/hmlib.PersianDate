@@ -22,5 +22,19 @@ namespace hmlib.PersianDate.Utilities
 			}
 			return null;
 		}
+
+		public static string? GetValue(this GroupCollection groups, params string[] groupNames)
+		{
+			foreach (var groupName in groupNames)
+			{
+				var value = groups[groupName];
+				if (groups[groupName].Success)
+				{
+					return groups[groupName].Value;
+				}
+			}
+			return null;
+
+		}
 	}
 }

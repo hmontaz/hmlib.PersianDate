@@ -11,48 +11,79 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests
 
 	public class ParseTests
 	{
-		[Fact]
-		public void ParseHappyPath()
+		[Theory]
+		[InlineData("1357.10.10", 1357, 10, 10, 0, 0, 0, 0)]
+		[InlineData("1357-10-10", 1357, 10, 10, 0, 0, 0, 0)]
+		[InlineData("1391/6/25 18:45", 1391, 6, 25, 18, 45, 0, 0)]
+		[InlineData("1391/6/25 17:43", 1391, 6, 25, 17, 43, 0, 0)]
+		[InlineData("1391/6/25 16:43:12", 1391, 6, 25, 16, 43, 12, 0)]
+		[InlineData("1391/6/25 15:43:12.25", 1391, 6, 25, 15, 43, 12, 250)]
+		[InlineData("1391/6/25 15:43:12.5", 1391, 6, 25, 15, 43, 12, 500)]
+		[InlineData("1391/6/25 15:43:12.6", 1391, 6, 25, 15, 43, 12, 600)]
+		[InlineData("1391/6/25 15:43:12.8", 1391, 6, 25, 15, 43, 12, 800)]
+
+		public void ParseHappyPath(string s, int year, int month, int day, int hour, int min, int sec, int ms)
 		{
-			Assert.Equal(new JalaliDateTime(1357, 10, 10), JalaliDateTime.Parse("1357.10.10"));
-			Assert.Equal(new JalaliDateTime(1357, 10, 10), JalaliDateTime.Parse("1357-10-10"));
-			Assert.Equal(new JalaliDateTime(1391, 6, 25, 18, 45, 0, 0), JalaliDateTime.Parse("1391/6/25 18:45"));
-			Assert.Equal(new JalaliDateTime(1391, 6, 25, 17, 43, 0, 0), JalaliDateTime.Parse("1391/6/25 17:43"));
-			Assert.Equal(new JalaliDateTime(1391, 6, 25, 16, 43, 12, 0), JalaliDateTime.Parse("1391/6/25 16:43:12"));
-			Assert.Equal(new JalaliDateTime(1391, 6, 25, 15, 43, 12, 250), JalaliDateTime.Parse("1391/6/25 15:43:12.25"));
-			Assert.Equal(new JalaliDateTime(1391, 6, 25, 14, 43, 12, 500), JalaliDateTime.Parse("1391/6/25 14:43:12.5"));
-			Assert.Equal(new JalaliDateTime(1391, 6, 25, 14, 43, 12, 600), JalaliDateTime.Parse("1391/6/25 14:43:12.6"));
-			Assert.Equal(new JalaliDateTime(1391, 6, 25, 14, 43, 12, 800), JalaliDateTime.Parse("1391/6/25 14:43:12.8"));
+			var expectedDateTime = new DateTime(year, month, day, hour, min, sec, ms);
+			var expectedJalaliDateTime = new JalaliDateTime(year, month, day, hour, min, sec, ms);
+
+
+			Assert.Equal(expectedDateTime, DateTime.Parse(s));
+
+			Assert.Equal(expectedJalaliDateTime, JalaliDateTime.Parse(s));
+			Assert.True(JalaliDateTime.TryParse(s, out var jd) && expectedJalaliDateTime == jd);
 		}
 
-		[Fact]
-		public void TryParseHappyPath()
+		[Theory]
+		[InlineData("1391/13/16")] //invalid month number
+		[InlineData("1391/10/32")] //invalid day number
+		[InlineData("1391/10/16 25:00")] //invalid hours
+		[InlineData("1391/10/16 14:60")] //invalid minutes
+		[InlineData("1391/10/16 14:43:60")] //invalid seconds
+		[InlineData("1391+6/25 14:43:12.5")] //invalid formats
+		[InlineData("1391/01 14:43")] //invalid formats
+		public void TryParseUnhappyPath(string s)
 		{
-			Assert.True(JalaliDateTime.TryParse("1391/10/16", out var j) && j == new JalaliDateTime(1391, 10, 16));
+			Assert.False(DateTime.TryParse(s, out _));
+			Assert.False(JalaliDateTime.TryParse(s, out _));
 		}
 
-		[Fact]
-		public void TryParseUnhappyPath()
-		{
-			// invalid year
-			Assert.False(JalaliDateTime.TryParse("9379-01-01", out var _));
-			//invalid month number
-			Assert.False(JalaliDateTime.TryParse("1391/13/16", out _));
-			//invalid day number
-			Assert.False(JalaliDateTime.TryParse("1391/10/32", out _));
-			//invalid hours
-			Assert.False(JalaliDateTime.TryParse("1391/10/16 25:00", out _));
-			//invalid minutes
-			Assert.False(JalaliDateTime.TryParse("1391/10/16 14:60", out _));
-			//invalid seconds
-			Assert.False(JalaliDateTime.TryParse("1391/10/16 14:43:60", out _));
 
-			//invalid formats
-			Assert.False(JalaliDateTime.TryParse("1391-6/25 14:43:12.5", out _));
-			Assert.False(JalaliDateTime.TryParse("1391/6-25 14:43", out _));
-			Assert.False(JalaliDateTime.TryParse("1391/6.25 14:43", out _));
-			Assert.False(JalaliDateTime.TryParse("1391.6-25 14:43", out _));
-			Assert.False(JalaliDateTime.TryParse("1391/01 14:43", out _));
+		[Fact]
+		public void BoundryTests()
+		{
+			Assert.True(JalaliDateTime.TryParse("9378/08/11 00:00:00.000", out var _));
+			Assert.True(JalaliDateTime.TryParse("9378/08/11 23:59:59.999", out var _));
+			Assert.False(JalaliDateTime.TryParse("9379/08/12", out var _));
+		}
+
+		[Theory]
+		[InlineData("00:00", 0, 0, 0, 0)]
+		[InlineData("00:00:00", 0, 0, 0, 0)]
+		[InlineData("00:00:00.0", 0, 0, 0, 0)]
+		[InlineData("00:00:00.001", 0, 0, 0, 1)]
+		[InlineData("00:00:00.01", 0, 0, 0, 10)]
+		[InlineData("00:00:00.1", 0, 0, 0, 100)]
+		[InlineData("00:00:00.11", 0, 0, 0, 110)]
+		[InlineData("00:00:00.111", 0, 0, 0, 111)]
+		[InlineData("12:00:00", 12, 0, 0, 0)]
+		[InlineData("13:00:00", 13, 0, 0, 0)]
+		[InlineData("1:00:00", 1, 0, 0, 0)]
+		[InlineData("1:00:00 AM", 1, 0, 0, 0)]
+		[InlineData("1:00:00 PM", 13, 0, 0, 0)]
+		public void ParseTimeTests(string s, int hour, int minute, int second, int ms)
+		{
+			var dateTime = DateTime.Parse(s);
+			Assert.Equal(hour, dateTime.Hour);
+			Assert.Equal(minute, dateTime.Minute);
+			Assert.Equal(second, dateTime.Second);
+			Assert.Equal(ms, dateTime.Millisecond);
+
+			var jalaliDateTime = JalaliDateTime.Parse(s);
+			Assert.Equal(hour, jalaliDateTime.Hour);
+			Assert.Equal(minute, jalaliDateTime.Minute);
+			Assert.Equal(second, jalaliDateTime.Second);
+			Assert.Equal(ms, jalaliDateTime.Millisecond);
 		}
 
 		[Fact]

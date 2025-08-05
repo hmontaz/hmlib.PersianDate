@@ -29,7 +29,7 @@ namespace hmlib.PersianDate.Globalization
 
 		}
 
-		public JalaliDateTimeFormatInfo(IFormatProvider? formatProvider)
+		private JalaliDateTimeFormatInfo(IFormatProvider? formatProvider)
 			: this((formatProvider is CultureInfo) ? (formatProvider as CultureInfo) : null)
 		{
 			//if (formatProvider != null && formatProvider is CultureInfo)
@@ -42,7 +42,7 @@ namespace hmlib.PersianDate.Globalization
 		/// <summary>
 		/// Initializes a new instance based on a provided base culture.
 		/// </summary>
-		public JalaliDateTimeFormatInfo(CultureInfo? baseCulture)
+		private JalaliDateTimeFormatInfo(CultureInfo? baseCulture)
 		{
 			_baseCulture = (CultureInfo)(baseCulture ?? CultureInfo.CurrentCulture).Clone();
 			Calendar = new PersianCalendar();
@@ -55,7 +55,9 @@ namespace hmlib.PersianDate.Globalization
 				MonthNames = new[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند" };
 				DayNames = new[] { "یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه" };
 				AbbreviatedDayNames = new[] { "یک", "دو", "سه", "چهار", "پنج", "جمعه", "شنبه" };
+				ADesignator = "ق";
 				AMDesignator = "ق.ظ";
+				PDesignator = "ب";
 				PMDesignator = "ب.ظ";
 				UsePersianDigits = true;
 				UsePersianComma = true;
@@ -65,7 +67,9 @@ namespace hmlib.PersianDate.Globalization
 				MonthNames = new[] { "Farvardin", "Ordibehesht", "Khordad", "Tir", "Mordad", "Shahrivar", "Mehr", "Aban", "Azar", "Dey", "Bahman", "Esfand" };
 				DayNames = new[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 				AbbreviatedDayNames = new[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+				ADesignator = "A";
 				AMDesignator = "AM";
+				PDesignator = "P";
 				PMDesignator = "PM";
 				UsePersianDigits = false;
 				UsePersianComma = false;
@@ -105,6 +109,15 @@ namespace hmlib.PersianDate.Globalization
 			FirstDayOfWeek = DayOfWeek.Saturday;
 		}
 
+		public static JalaliDateTimeFormatInfo GetInstance(IFormatProvider? formatProvider = null)
+		{
+			if (formatProvider is JalaliDateTimeFormatInfo)
+			{
+				return (JalaliDateTimeFormatInfo)formatProvider;
+			}
+			return new JalaliDateTimeFormatInfo(formatProvider);
+		}
+
 		public string[] MonthNames { get; set; }
 		public string[] AbbreviatedMonthNames { get; set; }
 		public string[] MonthGenitiveNames { get; set; }
@@ -113,7 +126,9 @@ namespace hmlib.PersianDate.Globalization
 		public string[] AbbreviatedDayNames { get; set; }
 		public string[] ShortestDayNames { get; set; }
 
+		public string ADesignator { get; set; }
 		public string AMDesignator { get; set; }
+		public string PDesignator { get; set; }
 		public string PMDesignator { get; set; }
 		public bool UsePersianDigits { get; private set; }
 		public bool UsePersianComma { get; private set; }

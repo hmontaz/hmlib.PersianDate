@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace hmlib.PersianDateTests.JalaliDateTimeTests
+namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 {
 	public class InvariantCultureTest
 	{
