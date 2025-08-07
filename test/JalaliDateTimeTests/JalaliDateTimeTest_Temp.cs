@@ -6,12 +6,17 @@ using System.IO;
 using hmlib.PersianDate;
 using System.Runtime.CompilerServices;
 using Xunit;
+using System.Globalization;
 
 namespace hmlib.PersianDateTests.JalaliDateTimeTests
 {
 
 	public class JalaliDateTimeTest
 	{
+		public JalaliDateTimeTest()
+		{
+			CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+		}
 		[Fact]
 		public void KindTest_1()
 		{
@@ -251,5 +256,25 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests
 
 			Assert.Equal(0, new JalaliDateTime(1348, 10, 11).getTime());
 		}*/
+
+
+		[Fact]
+		public void TryParseExactPerformanceTest()
+		{
+			for (var i = 0; i < 1_000_000; i++)
+			{
+				//DateTime.TryParseExact("13:45:30", "hh:mm:ss", null, DateTimeStyles.None, out _);
+				JalaliDateTime.TryParseExact("13:45:30", "hh:mm:ss", null, DateTimeStyles.None, out _);
+			}
+		}
+
+		[Fact]
+		public void ParserPerformanceTest()
+		{
+			for (var i = 0; i < 10_000; i++)
+			{
+				JalaliDateTime.Parse("13:45:30");
+			}
+		}
 	}
 }
