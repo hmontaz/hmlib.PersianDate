@@ -11,6 +11,12 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 {
 	public class CultureTest
 	{
+		public CultureTest()
+		{
+			//CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+			CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+		}
+
 		[Theory]
 		[InlineData("fa-IR", 1357, 1, 5, null, "۱۳۵۷/۱/۵ ۱۲:۰۰:۰۰ ق.ظ")]
 		[InlineData("en-IR", 1357, 1, 5, null, "1357/1/5 12:00:00 AM")]
