@@ -11,10 +11,11 @@ namespace hmlib.PersianDate
 {
 	public partial struct JalaliDateTime
 	{
+		readonly static IJalaliDateTimeParse _parser = new JalaliDateTimeParser();
 		public static JalaliDateTime Parse(string s)
 		{
 			if (s == null) throw new ArgumentNullException(nameof(s));
-			if (JalaliDateTimeParse.TryParse(s, out var result))
+			if (_parser.TryParse(s, out var result))
 			{
 				return result;
 			}
@@ -60,13 +61,13 @@ namespace hmlib.PersianDate
 		/// <exception cref="System.ArgumentException">styles is not a valid System.Globalization.DateTimeStyles value.-or-styles contains an invalid combination of System.Globalization.DateTimeStyles values (for example, both System.Globalization.DateTimeStyles.AssumeLocal and System.Globalization.DateTimeStyles.AssumeUniversal).</exception>		
 		public static bool TryParseExact(string s, string format, IFormatProvider? formatProvider, DateTimeStyles style, out JalaliDateTime result)
 		{
-			return JalaliDateTimeParse.TryParseExact(s, format, formatProvider, style, strictDate: false, strictTime: false, out result);
+			return _parser.TryParseExact(s, format, formatProvider, style, strictDate: false, strictTime: false, out result);
 		}
 		public static JalaliDateTime ParseExact(string s, string format, IFormatProvider? provider)
 		{
 			if (s == null) throw new ArgumentNullException(nameof(s));
 			if (format == null) throw new ArgumentNullException(nameof(format));
-			return JalaliDateTimeParse.ParseExact(s, format, DateTimeFormatInfo.GetInstance(provider), DateTimeStyles.None);
+			return _parser.ParseExact(s, format, DateTimeFormatInfo.GetInstance(provider), DateTimeStyles.None);
 		}
 	}
 }

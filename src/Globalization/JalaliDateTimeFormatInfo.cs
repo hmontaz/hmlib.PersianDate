@@ -1,4 +1,5 @@
-﻿using System;
+﻿using hmlib.PersianDate.Utilities;
+using System;
 using System.Globalization;
 
 namespace hmlib.PersianDate.Globalization
@@ -53,6 +54,8 @@ namespace hmlib.PersianDate.Globalization
 			if (_baseCulture.Name.StartsWith("fa-"))
 			{
 				MonthNames = new[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند" };
+				AbbreviatedMonthNames = MonthNames;
+				//AbbreviatedMonthNames = new[] { "فر", "ارد", "خرد", "تیر", "مرد", "شهری", "مهر", "آبا", "آذر", "دی", "بهمن", "اسف" };
 				DayNames = new[] { "یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه" };
 				AbbreviatedDayNames = new[] { "یک", "دو", "سه", "چهار", "پنج", "جمعه", "شنبه" };
 				ADesignator = "ق";
@@ -65,6 +68,7 @@ namespace hmlib.PersianDate.Globalization
 			else
 			{
 				MonthNames = new[] { "Farvardin", "Ordibehesht", "Khordad", "Tir", "Mordad", "Shahrivar", "Mehr", "Aban", "Azar", "Dey", "Bahman", "Esfand" };
+				AbbreviatedMonthNames = new[] { "Far", "Ord", "Kho", "Tir", "Mor", "Sha", "Meh", "Aba", "Aza", "Dey", "Bah", "Esf" };
 				DayNames = new[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 				AbbreviatedDayNames = new[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 				ADesignator = "A";
@@ -74,9 +78,9 @@ namespace hmlib.PersianDate.Globalization
 				UsePersianDigits = false;
 				UsePersianComma = false;
 			}
-			AbbreviatedMonthNames = MonthNames;
+			//AbbreviatedMonthNames = MonthNames;
 			MonthGenitiveNames = MonthNames;
-			AbbreviatedMonthGenitiveNames = MonthNames;
+			AbbreviatedMonthGenitiveNames = AbbreviatedMonthNames;
 			ShortestDayNames = AbbreviatedDayNames;
 
 			DateSeparator = "/";
@@ -155,5 +159,51 @@ namespace hmlib.PersianDate.Globalization
 				? this
 				: null;
 		}
+
+		/*public override int GetHashCode()
+		{
+			unchecked
+			{
+				int hash = 17;
+
+				hash = hash * 31 + MonthNames.HashArray();
+				hash = hash * 31 + AbbreviatedMonthNames.HashArray();
+				hash = hash * 31 + MonthGenitiveNames.HashArray();
+				hash = hash * 31 + AbbreviatedMonthGenitiveNames.HashArray();
+				hash = hash * 31 + DayNames.HashArray();
+				hash = hash * 31 + AbbreviatedDayNames.HashArray();
+				hash = hash * 31 + ShortestDayNames.HashArray();
+
+				hash = hash * 31 + (ADesignator?.GetHashCode() ?? 0);
+				hash = hash * 31 + (AMDesignator?.GetHashCode() ?? 0);
+				hash = hash * 31 + (PDesignator?.GetHashCode() ?? 0);
+				hash = hash * 31 + (PMDesignator?.GetHashCode() ?? 0);
+
+				hash = hash * 31 + UsePersianDigits.GetHashCode();
+				hash = hash * 31 + UsePersianComma.GetHashCode();
+
+				hash = hash * 31 + (DateSeparator?.GetHashCode() ?? 0);
+				hash = hash * 31 + (TimeSeparator?.GetHashCode() ?? 0);
+
+				hash = hash * 31 + (ShortDatePattern?.GetHashCode() ?? 0);
+				hash = hash * 31 + (LongDatePattern?.GetHashCode() ?? 0);
+				hash = hash * 31 + (ShortTimePattern?.GetHashCode() ?? 0);
+				hash = hash * 31 + (LongTimePattern?.GetHashCode() ?? 0);
+				hash = hash * 31 + (FullDateTimePattern?.GetHashCode() ?? 0);
+				hash = hash * 31 + (MonthDayPattern?.GetHashCode() ?? 0);
+				hash = hash * 31 + (YearMonthPattern?.GetHashCode() ?? 0);
+
+				hash = hash * 31 + CalendarWeekRule.GetHashCode();
+				hash = hash * 31 + FirstDayOfWeek.GetHashCode();
+
+				hash = hash * 31 + (_baseCulture?.Name?.GetHashCode() ?? 0);
+				hash = hash * 31 + (_baseCulture?.EnglishName?.GetHashCode() ?? 0);
+
+				hash = hash * 31 + (Calendar?.GetType().FullName?.GetHashCode() ?? 0); // safer than Calendar.GetHashCode()
+
+				return hash;
+			}
+		}
+		*/
 	}
 }

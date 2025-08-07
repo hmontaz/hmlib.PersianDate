@@ -137,10 +137,10 @@ namespace hmlib.PersianDate.Globalization
 				case "y":
 					// Year/month pattern
 					return formatInfo.YearMonthPattern;
-				case "O":
+				/*case "O":
 				case "o":
 					// Round-trip pattern (ISO 8601)
-					return "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK";
+					return "yyyy-MM-ddTHH:mm:ss.fffffffK";
 				case "R":
 				case "r":
 					// RFC1123 pattern
@@ -150,7 +150,7 @@ namespace hmlib.PersianDate.Globalization
 					return "yyyy'-'MM'-'dd'T'HH':'mm':'ss";
 				case "u":
 					// Universal sortable (UTC)
-					return "yyyy'-'MM'-'dd HH':'mm':'ss'Z'";
+					return "yyyy'-'MM'-'dd HH':'mm':'ss'Z'";*/
 				case "U":
 					// Universal full (long time, UTC)
 					// Same as "F" but caller must convert DateTime to UTC

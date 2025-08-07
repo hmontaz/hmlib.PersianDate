@@ -56,4 +56,8 @@
 		<None Remove="resources\icon\nuget_design.svg" />
 		<None Include="resources\icon\icon.png" Pack="true" PackagePath="" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Globalization\_temp\" />
+	</ItemGroup>
 </Project>
