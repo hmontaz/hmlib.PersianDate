@@ -55,9 +55,7 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 			Assert.Equal(expectedDay, jalaliDateTime.Day);
 		}
 
-		/*fail in github actions
-		 * 
-		 * [InlineData("en-US", "g", true)]
+		[InlineData("en-US", "g", true)]
 		[InlineData("en-US", "G", true)]
 		[InlineData("en-US", "d", true)]
 		[InlineData("en-US", "D", true)]
@@ -89,6 +87,6 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 			var jalaliString = jalaliDateTime.ToString(format, culture);
 			Assert.Equal(jalaliDateTime, JalaliDateTime.ParseExact(jalaliString, format, culture));
 
-		}*/
+		}
 	}
 }
