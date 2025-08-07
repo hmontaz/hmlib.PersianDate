@@ -48,7 +48,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="Globalization\_temp\JalaliLeapYears.xlsx" />
 		<None Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 

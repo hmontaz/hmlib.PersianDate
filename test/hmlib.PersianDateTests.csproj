@@ -24,8 +24,8 @@
     <Compile Include="JalaliDateTimeTests\CultureTests\InvariantCultureTest.cs" />
     <Compile Include="JalaliDateTimeTests\ConstructorTests.cs" />
     <Compile Include="JalaliDateTimeTests\JalaliDateTimeParseTests.cs" />
-    <Compile Include="JalaliDateTimeTests\LoopTests.cs" />
     <Compile Include="JalaliDateTimeTests\JalaliDateTimeTest_Temp.cs" />
+    <Compile Include="JalaliDateTimeTests\LoopTests.cs" />
     <Compile Include="JalaliDateTimeTests\KnownDates.cs" />
     <Compile Include="JalaliDateTimeTests\ParseExactTests.cs" />
     <Compile Include="JalaliDateTimeTests\ParseTests.cs" />

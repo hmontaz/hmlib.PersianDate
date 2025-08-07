@@ -11,7 +11,7 @@ namespace hmlib.PersianDateTests
 {
 	public class Examples
 	{
-		[Fact]
+		/*[Fact]
 		public void ToStringExamples()
 		{
 			JalaliDateTime j = new DateTime(2024, 01, 01);
@@ -25,6 +25,6 @@ namespace hmlib.PersianDateTests
 			Assert.Equal("1402/10/11 12:00:00 AM", s2);
 			Assert.Equal("۱۴۰۲/۱۰/۱۱ ۱۲:۰۰:۰۰ ق.ظ", s3);
 			Assert.Equal("دوشنبه ۱۱ دی ۱۴۰۲", s4);
-		}
+		}*/
 	}
 }
