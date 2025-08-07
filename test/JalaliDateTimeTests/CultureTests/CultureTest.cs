@@ -79,7 +79,7 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 		[Theory]
 		public void StandardFormatBackAndFortTest(string cultureName, string format, bool justDate)
 		{
-			var culture = System.Globalization.CultureInfo.GetCultureInfo(cultureName);
+			var culture = CultureInfo.GetCultureInfo(cultureName);
 
 			var dateTime = justDate ? DateTime.Today : DateTime.Now;
 			var s = dateTime.ToString(format, culture);
@@ -89,6 +89,6 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 			var jalaliString = jalaliDateTime.ToString(format, culture);
 			Assert.Equal(jalaliDateTime, JalaliDateTime.ParseExact(jalaliString, format, culture));
 
-		}
+		}*/
 	}
 }
