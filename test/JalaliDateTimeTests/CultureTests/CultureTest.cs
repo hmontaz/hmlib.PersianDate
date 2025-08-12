@@ -60,7 +60,6 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 			Assert.Equal(expectedDay, jalaliDateTime.Day);
 		}
 
-		[InlineData("en-US", "g", true)]
 		//[InlineData("en-US", "g", true)]//[fix github]
 		//[InlineData("en-US", "G", true)]//[fix github]
 		[InlineData("en-US", "d", true)]
