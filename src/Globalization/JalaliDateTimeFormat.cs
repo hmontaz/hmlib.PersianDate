@@ -100,6 +100,9 @@ namespace hmlib.PersianDate.Globalization
 			{
 				sb.Replace(",", "،"); // Replace comma with Persian comma
 			}
+			// Replace non-breaking spaces and thin spaces with regular spaces
+			sb.Replace('\u202F', ' ').Replace('\u00A0', ' ');
+
 			return sb.ToString();
 		}
 
