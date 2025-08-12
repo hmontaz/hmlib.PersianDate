@@ -13,7 +13,7 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 	{
 		public CultureTest()
 		{
-			CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+			//CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
 		}
 
 		[Theory]
