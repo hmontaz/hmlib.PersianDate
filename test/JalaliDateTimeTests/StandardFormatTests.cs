@@ -39,7 +39,7 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests
 				// Get the expected custom format for the standard format
 				Assert.Equal(expectedFormat, GetCustomPatternFromStandard(standard, culture));
 				// Make sure formatting with standard and expectedFormat yield the same result
-				Assert.Equal(normalize(dtNow.ToString(standard, culture)), normalize(dtNow.ToString(expectedFormat, culture)));
+				Assert.Equal(normalize(dtNow.ToString(standard, culture)), dtNow.ToString(expectedFormat, culture));
 				// Make sure parsing with standard and expectedFormat yield the same result
 				Assert.Equal(DateTime.ParseExact(dtStr, standard, culture), DateTime.ParseExact(dtStr, expectedFormat, culture));
 
