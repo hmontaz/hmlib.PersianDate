@@ -71,7 +71,7 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests
 				"U" => dtf.FullDateTimePattern,
 				_ => throw new FormatException($"Unknown standard format: {standard}"),
 			};
-			return normalize(result);
+			return result;
 		}
 
 		private static string normalize(string result)
