@@ -7,33 +7,96 @@ namespace hmlib.PersianDate.Utilities
 {
 	internal class StringTokenizer
 	{
-		internal static string[] Tokenize(string s, string[] knownTokens)
+		internal struct Token
 		{
+			public string Value { get; }
+			public bool IsLiteral { get; }
+
+			public Token(string value, bool isLiteral)
+			{
+				Value = value;
+				IsLiteral = isLiteral;
+			}
+		}
+		internal static string[] KnownTokens = new[]
+					{
+						"yyyy", "yyy", "yy", "y",
+						"MMMM", "MMM", "MM", "M",
+						"dddd", "ddd", "dd", "d",
+						"HH", "H", "hh", "h",
+						"mm", "m", "ss", "s",
+						"fffffff", "ffffff", "fffff", "ffff", "fff", "ff", "f",
+						"tt", "t"
+					};
+		internal static Token[] Tokenize(string format, string[] knownTokens)
+		{
+			knownTokens ??= StringTokenizer.KnownTokens;
 			knownTokens = knownTokens.OrderByDescending(t => t.Length).ToArray();
-			var result = new List<string>();
+
+			var tokens = new List<Token>();
 			int i = 0;
 
-			while (i < s.Length)
+			while (i < format.Length)
 			{
-				// Try to match the longest known token at this position
-				string match = knownTokens
-					.OrderByDescending(t => t.Length)
-					.FirstOrDefault(t => i + t.Length <= s.Length && s.Substring(i, t.Length) == t);
+				char c = format[i];
+
+				// 1) Quoted literals: '...' or "..."
+				if (c == '\'' || c == '\"')
+				{
+					char quote = c;
+					int start = i++;
+					while (i < format.Length)
+					{
+						if (format[i] == quote)
+						{
+							if (i + 1 < format.Length && format[i + 1] == quote)
+							{
+								i += 2; // escaped quote
+								continue;
+							}
+							i++;
+							break;
+						}
+						i++;
+					}
+					tokens.Add(new Token(format.Substring(start, i - start), true));
+					continue;
+				}
+
+				// 2) Backslash escapes
+				if (c == '\\')
+				{
+					if (i + 1 < format.Length)
+					{
+						tokens.Add(new Token(format.Substring(i, 2), true));
+						i += 2;
+					}
+					else
+					{
+						tokens.Add(new Token("\\", true));
+						i++;
+					}
+					continue;
+				}
+
+				// 3) Try to match a known token
+				string match = knownTokens.FirstOrDefault(t =>
+					i + t.Length <= format.Length &&
+					format.Substring(i, t.Length) == t);
 
 				if (match != null)
 				{
-					result.Add(match);
+					tokens.Add(new Token(match, false));
 					i += match.Length;
+					continue;
 				}
-				else
-				{
-					// It's a literal (e.g., '/', ':', ' ')
-					result.Add(s[i].ToString());
-					i++;
-				}
+
+				// 4) Fallback: treat as literal
+				tokens.Add(new Token(format[i].ToString(), true));
+				i++;
 			}
 
-			return result.ToArray();
+			return tokens.ToArray();
 		}
 	}
 }

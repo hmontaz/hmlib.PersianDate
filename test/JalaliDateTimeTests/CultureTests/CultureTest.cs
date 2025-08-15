@@ -11,6 +11,11 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 {
 	public class CultureTest
 	{
+		public CultureTest()
+		{
+			//CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+		}
+
 		[Theory]
 		[InlineData("fa-IR", 1357, 1, 5, null, "۱۳۵۷/۱/۵ ۱۲:۰۰:۰۰ ق.ظ")]
 		[InlineData("en-IR", 1357, 1, 5, null, "1357/1/5 12:00:00 AM")]
@@ -18,6 +23,8 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 		[InlineData("en-IR", 1357, 1, 5, "yyyy/M/d", "1357/1/5")]
 		[InlineData("fa-IR", 1300, 1, 1, "yyyy/MM/dd", "۱۳۰۰/۰۱/۰۱")]
 		[InlineData("en-IR", 1300, 1, 1, "yyyy/MM/dd", "1300/01/01")]
+		[InlineData("fa-IR", 1300, 1, 1, "dddd, dd MMM yyyy", "دوشنبه، ۰۱ فر ۱۳۰۰")]
+		[InlineData("en-IR", 1300, 1, 1, "dddd, dd MMM yyyy", "Monday, 01 Far 1300")]
 		[InlineData("fa-IR", 1300, 1, 1, "dddd, dd MMMM yyyy", "دوشنبه، ۰۱ فروردین ۱۳۰۰")]
 		[InlineData("en-IR", 1300, 1, 1, "dddd, dd MMMM yyyy", "Monday, 01 Farvardin 1300")]
 		[InlineData("fa-IR", 1300, 1, 1, "H:mm", "۰:۰۰")]
@@ -55,16 +62,14 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 			Assert.Equal(expectedDay, jalaliDateTime.Day);
 		}
 
-		/*fail in github actions
-		 * 
-		 * [InlineData("en-US", "g", true)]
-		[InlineData("en-US", "G", true)]
+		//[InlineData("en-US", "g", true)]//[fix github]
+		//[InlineData("en-US", "G", true)]//[fix github]
 		[InlineData("en-US", "d", true)]
-		[InlineData("en-US", "D", true)]
-		[InlineData("en-US", "t", true)]
-		[InlineData("en-US", "T", true)]
-		[InlineData("en-US", "f", true)]
-		[InlineData("en-US", "F", true)]
+		//[InlineData("en-US", "D", true)]//[fix github]
+		//[InlineData("en-US", "t", true)]//[fix github]
+		//[InlineData("en-US", "T", true)]//[fix github]
+		//[InlineData("en-US", "f", true)]//[fix github]
+		//[InlineData("en-US", "F", true)]//[fix github]
 		[InlineData("en-US", "M", true)]
 		[InlineData("en-US", "m", true)]
 		//[InlineData("en-US", "Y", true)]//xx
@@ -75,7 +80,7 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 		//[InlineData("en-US", "r", true)]//[fix]
 		//[InlineData("en-US", "s", true)]//[fix]
 		//[InlineData("en-US", "u", true)]//[fix]
-		[InlineData("en-US", "U", true)]
+		//[InlineData("en-US", "U", true)]//[fix github]
 		[Theory]
 		public void StandardFormatBackAndFortTest(string cultureName, string format, bool justDate)
 		{
@@ -89,6 +94,6 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 			var jalaliString = jalaliDateTime.ToString(format, culture);
 			Assert.Equal(jalaliDateTime, JalaliDateTime.ParseExact(jalaliString, format, culture));
 
-		}*/
+		}
 	}
 }

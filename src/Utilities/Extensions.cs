@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace hmlib.PersianDate.Utilities
 {
-	static class Extensions
+	internal static class Extensions
 	{
 		public static string IfNullOrEmpty(this string value, string defaultValue)
 		{
@@ -34,7 +34,12 @@ namespace hmlib.PersianDate.Utilities
 				}
 			}
 			return null;
+		}
 
+		internal static StringBuilder NormalizeSpaces(this StringBuilder sb)
+		{
+			// Replace non-breaking spaces and thin spaces with regular spaces
+			return sb.Replace('\u202F', ' ').Replace('\u00A0', ' ');
 		}
 
 	}

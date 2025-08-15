@@ -54,8 +54,8 @@ namespace hmlib.PersianDate.Globalization
 			if (_baseCulture.Name.StartsWith("fa-"))
 			{
 				MonthNames = new[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند" };
-				AbbreviatedMonthNames = MonthNames;
-				//AbbreviatedMonthNames = new[] { "فر", "ارد", "خرد", "تیر", "مرد", "شهری", "مهر", "آبا", "آذر", "دی", "بهمن", "اسف" };
+				AbbreviatedMonthNames = new[] { "فر", "ارد", "خرد", "تیر", "مرد", "شهر", "مهر", "آبا", "آذر", "دی", "بهم", "اسف" };
+				//AbbreviatedMonthNames = MonthNames;
 				DayNames = new[] { "یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه" };
 				AbbreviatedDayNames = new[] { "یک", "دو", "سه", "چهار", "پنج", "جمعه", "شنبه" };
 				ADesignator = "ق";
@@ -78,7 +78,6 @@ namespace hmlib.PersianDate.Globalization
 				UsePersianDigits = false;
 				UsePersianComma = false;
 			}
-			//AbbreviatedMonthNames = MonthNames;
 			MonthGenitiveNames = MonthNames;
 			AbbreviatedMonthGenitiveNames = AbbreviatedMonthNames;
 			ShortestDayNames = AbbreviatedDayNames;
@@ -87,25 +86,38 @@ namespace hmlib.PersianDate.Globalization
 			TimeSeparator = ":";
 
 			var types = _baseCulture.CultureTypes;
-			if (_baseCulture.ThreeLetterWindowsLanguageName == "IVL")
+			switch (_baseCulture.ThreeLetterWindowsLanguageName)
 			{
-				ShortDatePattern = "yyyy/MM/dd";
-				ShortTimePattern = "HH:mm";
-				LongTimePattern = "HH:mm:ss";
+				case "IVL":
+					ShortDatePattern = "yyyy/MM/dd";
+					ShortTimePattern = "HH:mm";
+					LongTimePattern = "HH:mm:ss";
 
-				LongDatePattern = "dddd, dd MMMM yyyy";
-				MonthDayPattern = "MMMM dd";
-				YearMonthPattern = "yyyy MMMM";
-			}
-			else
-			{
-				ShortDatePattern = "yyyy/M/d";
-				ShortTimePattern = "H:mm";
-				LongTimePattern = "h:mm:ss tt";
+					LongDatePattern = "dddd, dd MMMM yyyy";
+					MonthDayPattern = "MMMM dd";
+					YearMonthPattern = "yyyy MMMM";
+					break;
+				case "FAR":
+				case "ZZZ":
+					ShortDatePattern = "yyyy/M/d";
+					ShortTimePattern = "H:mm";
+					LongTimePattern = "h:mm:ss tt";
 
-				LongDatePattern = "dddd, dd MMMM yyyy";
-				MonthDayPattern = "MMMM dd";
-				YearMonthPattern = "yyyy MMMM";
+					LongDatePattern = "dddd, dd MMMM yyyy";
+					MonthDayPattern = "MMMM dd";
+					YearMonthPattern = "yyyy MMMM";
+					break;
+				default:
+					var df = _baseCulture.DateTimeFormat;
+
+					ShortDatePattern = df.ShortDatePattern;
+					ShortTimePattern = df.ShortTimePattern;
+					LongTimePattern = df.LongTimePattern;
+
+					LongDatePattern = df.LongDatePattern;
+					MonthDayPattern = df.MonthDayPattern;
+					YearMonthPattern = df.YearMonthPattern;
+					break;
 			}
 			FullDateTimePattern = LongDatePattern + " " + LongTimePattern;
 
