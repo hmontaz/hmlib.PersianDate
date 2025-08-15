@@ -1,4 +1,4 @@
-# hmlib.PersianDate
+# <img src="./assets/icon.png" width="32"/> hmlib.PersianDate
 
 A lightweight .NET library for working with Jalali (Persian) dates. Provides a familiar `DateTime`-like API for parsing, formatting, and converting between Jalali and Gregorian calendars.
 
@@ -17,7 +17,21 @@ A lightweight .NET library for working with Jalali (Persian) dates. Provides a f
 dotnet add package hmlib.PersianDate
 ```
 ## 💡 Usage Example
+
 ```csharp
+// Convert from DateTime to JalaliDateTime
+JalaliDateTime j1 = new DateTime(2024, 01, 01);
+var j2 = (JalaliDateTime)new DateTime(2024, 01, 01);
+```
+
+```csharp
+//Convert from JalaliDateTime to DateTime
+DateTime dt1 = new JalaliDateTime(1402, 10, 11);
+var dt2 = (DateTime)new JalaliDateTime(1402, 10, 11);
+```
+
+```csharp
+// Examples of JalaliDateTime.ToString() method with different formats and cultures
 JalaliDateTime jDate = new DateTime(2024, 01, 01);
 var s1 = jDate.ToString();// "1402/10/11 12:00:00 AM"
 var s2 = jDate.ToString(CultureInfo.GetCultureInfo("en-IR"));// "1402/10/11 12:00:00 AM"

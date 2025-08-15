@@ -11,7 +11,7 @@
 		<Company>Hossein Montazeri</Company>
 		<Description>Library for working with Jalali (Persian) dates in .NET.</Description>
 		<PackageId>hmlib.PersianDate</PackageId>
-		<PackageVersion>1.0.3</PackageVersion>
+		<PackageVersion>1.0.4</PackageVersion>
 		<AssemblyName>hmlib.PersianDate</AssemblyName>
 		<PackageIcon>icon.png</PackageIcon>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -52,8 +52,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Remove="resources\icon\nuget_design.svg" />
-		<None Include="resources\icon\icon.png" Pack="true" PackagePath="" />
+		<None Remove="assets\nuget_design.svg" />
+		<None Include="assets\icon.png" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 	<ItemGroup>
