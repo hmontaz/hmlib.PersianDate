@@ -23,6 +23,8 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests.CultureTests
 		[InlineData("en-IR", 1357, 1, 5, "yyyy/M/d", "1357/1/5")]
 		[InlineData("fa-IR", 1300, 1, 1, "yyyy/MM/dd", "۱۳۰۰/۰۱/۰۱")]
 		[InlineData("en-IR", 1300, 1, 1, "yyyy/MM/dd", "1300/01/01")]
+		[InlineData("fa-IR", 1300, 1, 1, "dddd, dd MMM yyyy", "دوشنبه، ۰۱ فر ۱۳۰۰")]
+		[InlineData("en-IR", 1300, 1, 1, "dddd, dd MMM yyyy", "Monday, 01 Far 1300")]
 		[InlineData("fa-IR", 1300, 1, 1, "dddd, dd MMMM yyyy", "دوشنبه، ۰۱ فروردین ۱۳۰۰")]
 		[InlineData("en-IR", 1300, 1, 1, "dddd, dd MMMM yyyy", "Monday, 01 Farvardin 1300")]
 		[InlineData("fa-IR", 1300, 1, 1, "H:mm", "۰:۰۰")]

@@ -75,11 +75,8 @@ namespace hmlib.PersianDate.Globalization
 				["t"] = tt.Substring(0, 1)
 			};
 
-			// List of known format tokens
-			var knownTokens = tokenMap.Keys.ToArray();
-
 			// Tokenize and replace
-			var tokens = StringTokenizer.Tokenize(format ?? "yyyy/MM/dd h:mm:ss tt", knownTokens);
+			var tokens = StringTokenizer.Tokenize(format ?? "yyyy/MM/dd h:mm:ss tt", StringTokenizer.KnownTokens).Select(a => a.Value);
 			var sb = new StringBuilder();
 
 			foreach (var token in tokens)
@@ -140,7 +137,7 @@ namespace hmlib.PersianDate.Globalization
 				case "y":
 					// Year/month pattern
 					return formatInfo.YearMonthPattern;
-				/*case "O":
+				case "O":
 				case "o":
 					// Round-trip pattern (ISO 8601)
 					return "yyyy-MM-ddTHH:mm:ss.fffffffK";
@@ -153,7 +150,7 @@ namespace hmlib.PersianDate.Globalization
 					return "yyyy'-'MM'-'dd'T'HH':'mm':'ss";
 				case "u":
 					// Universal sortable (UTC)
-					return "yyyy'-'MM'-'dd HH':'mm':'ss'Z'";*/
+					return "yyyy'-'MM'-'dd HH':'mm':'ss'Z'";
 				case "U":
 					// Universal full (long time, UTC)
 					// Same as "F" but caller must convert DateTime to UTC

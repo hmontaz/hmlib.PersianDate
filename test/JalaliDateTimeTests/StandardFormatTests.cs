@@ -66,7 +66,7 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests
 				"O" or "o" => "yyyy-MM-ddTHH:mm:ss.fffffffK",
 				"R" or "r" => "ddd, dd MMM yyyy HH':'mm':'ss 'GMT'",
 				"s" => "yyyy'-'MM'-'dd'T'HH':'mm':'ss",
-				"u" => "yyyy'-'MM'-'dd HH':'mm':'ss'Z'", // Universal sortable (UTC) - not used in JalaliDateTime	
+				"u" => "yyyy'-'MM'-'dd HH':'mm':'ss'Z'",	
 				"U" => dtf.FullDateTimePattern,
 				_ => throw new FormatException($"Unknown standard format: {standard}"),
 			};

@@ -54,8 +54,8 @@ namespace hmlib.PersianDate.Globalization
 			if (_baseCulture.Name.StartsWith("fa-"))
 			{
 				MonthNames = new[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند" };
-				AbbreviatedMonthNames = MonthNames;
-				//AbbreviatedMonthNames = new[] { "فر", "ارد", "خرد", "تیر", "مرد", "شهری", "مهر", "آبا", "آذر", "دی", "بهمن", "اسف" };
+				AbbreviatedMonthNames = new[] { "فر", "ارد", "خرد", "تیر", "مرد", "شهر", "مهر", "آبا", "آذر", "دی", "بهم", "اسف" };
+				//AbbreviatedMonthNames = MonthNames;
 				DayNames = new[] { "یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه" };
 				AbbreviatedDayNames = new[] { "یک", "دو", "سه", "چهار", "پنج", "جمعه", "شنبه" };
 				ADesignator = "ق";
@@ -78,7 +78,6 @@ namespace hmlib.PersianDate.Globalization
 				UsePersianDigits = false;
 				UsePersianComma = false;
 			}
-			//AbbreviatedMonthNames = MonthNames;
 			MonthGenitiveNames = MonthNames;
 			AbbreviatedMonthGenitiveNames = AbbreviatedMonthNames;
 			ShortestDayNames = AbbreviatedDayNames;
