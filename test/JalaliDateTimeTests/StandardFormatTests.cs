@@ -39,7 +39,7 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests
 				// Get the expected custom format for the standard format
 				Assert.Equal(expectedFormat, GetCustomPatternFromStandard(standard, culture));
 				// Make sure formatting with standard and expectedFormat yield the same result
-				Assert.Equal(dtNow.ToString(standard, culture), dtNow.ToString(expectedFormat, culture));
+				Assert.Equal(normalize(dtNow.ToString(standard, culture)), normalize(dtNow.ToString(expectedFormat, culture)));
 				// Make sure parsing with standard and expectedFormat yield the same result
 				Assert.Equal(DateTime.ParseExact(dtStr, standard, culture), DateTime.ParseExact(dtStr, expectedFormat, culture));
 
@@ -67,10 +67,15 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests
 				"O" or "o" => "yyyy-MM-ddTHH:mm:ss.fffffffK",
 				"R" or "r" => "ddd, dd MMM yyyy HH':'mm':'ss 'GMT'",
 				"s" => "yyyy'-'MM'-'dd'T'HH':'mm':'ss",
-				"u" => "yyyy'-'MM'-'dd HH':'mm':'ss'Z'",	
+				"u" => "yyyy'-'MM'-'dd HH':'mm':'ss'Z'",
 				"U" => dtf.FullDateTimePattern,
 				_ => throw new FormatException($"Unknown standard format: {standard}"),
 			};
+			return normalize(result);
+		}
+
+		private static string normalize(string result)
+		{
 			return new StringBuilder(result).NormalizeSpaces().ToString();
 		}
 	}
