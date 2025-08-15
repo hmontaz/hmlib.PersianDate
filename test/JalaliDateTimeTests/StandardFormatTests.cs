@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using hmlib.PersianDate.Utilities;
 
 namespace hmlib.PersianDateTests.JalaliDateTimeTests
 {
@@ -51,7 +52,7 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests
 		{
 			var dtf = culture.DateTimeFormat;
 
-			return standard switch
+			var result = standard switch
 			{
 				"d" => dtf.ShortDatePattern,
 				"D" => dtf.LongDatePattern,
@@ -70,6 +71,7 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests
 				"U" => dtf.FullDateTimePattern,
 				_ => throw new FormatException($"Unknown standard format: {standard}"),
 			};
+			return new StringBuilder(result).NormalizeSpaces().ToString();
 		}
 	}
 }

@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace hmlib.PersianDate.Utilities
 {
-	static class Extensions
+	internal static class Extensions
 	{
 		public static string IfNullOrEmpty(this string value, string defaultValue)
 		{
