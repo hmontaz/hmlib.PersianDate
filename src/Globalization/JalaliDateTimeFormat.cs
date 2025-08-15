@@ -97,15 +97,20 @@ namespace hmlib.PersianDate.Globalization
 			{
 				sb.Replace(",", "،"); // Replace comma with Persian comma
 			}
-			// Replace non-breaking spaces and thin spaces with regular spaces
-			sb.Replace('\u202F', ' ').Replace('\u00A0', ' ');
 
-			return sb.ToString();
+			return sb.NormalizeSpaces().ToString();
 		}
 
 		internal static string GetStandardFormat(string? format, IFormatProvider? formatProvider)
 		{
 			var formatInfo = JalaliDateTimeFormatInfo.GetInstance(formatProvider);
+
+			var s = getStandardFormat(format, formatInfo);
+			return new StringBuilder(s).NormalizeSpaces().ToString();
+		}
+
+		static string getStandardFormat(string? format, JalaliDateTimeFormatInfo formatInfo)
+		{
 			switch (format)
 			{
 				case null:
@@ -158,7 +163,6 @@ namespace hmlib.PersianDate.Globalization
 				default:
 					return format;
 			}
-
 		}
 	}
 }

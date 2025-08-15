@@ -34,7 +34,12 @@ namespace hmlib.PersianDate.Utilities
 				}
 			}
 			return null;
+		}
 
+		internal static StringBuilder NormalizeSpaces(this StringBuilder sb)
+		{
+			// Replace non-breaking spaces and thin spaces with regular spaces
+			return sb.Replace('\u202F', ' ').Replace('\u00A0', ' ');
 		}
 
 	}

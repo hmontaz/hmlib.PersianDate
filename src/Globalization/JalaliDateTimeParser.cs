@@ -192,29 +192,6 @@ namespace hmlib.PersianDate.Globalization
 
 		}
 
-		internal string[] TokenizeFormat(string format)
-		{
-			var tokens = new List<string>();
-			var i = 0;
-
-			while (i < format.Length)
-			{
-				if (char.IsLetter(format[i]))
-				{
-					var start = i;
-					while (i < format.Length && format[i] == format[start]) i++;
-					tokens.Add(format.Substring(start, i - start)); // e.g., "yyyy"
-				}
-				else
-				{
-					var start = i;
-					while (i < format.Length && !char.IsLetter(format[i])) i++;
-					tokens.Add(format.Substring(start, i - start)); // e.g., "/"
-				}
-			}
-			return tokens.ToArray();
-		}
-
 		bool IsLiteral(string token) => !char.IsLetter(token[0]);
 
 		public bool TryParseExact(string input, string format, IFormatProvider? provider, DateTimeStyles style, bool strictDate, bool strictTime, out JalaliDateTime result)
@@ -226,7 +203,7 @@ namespace hmlib.PersianDate.Globalization
 			input = normalizeDigits(input, jalaliInfo); // handle Persian/Arabic numerals
 
 			// Step 2: Tokenize format (naively, or cache later)
-			var tokens = TokenizeFormat(format); // e.g., ["yyyy", "/", "MM", "/", "dd", " ", "HH", ":", "mm"]
+			var tokens = StringTokenizer.Tokenize(format, StringTokenizer.KnownTokens).Select(a => a.Value);
 
 			// Step 3: Parse input based on tokens
 			var reader = new CharReader(input);
