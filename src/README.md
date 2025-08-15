@@ -1,4 +1,4 @@
-# <img src="./assets/icon.png" width="32"/> hmlib.PersianDate
+# <img src="https://raw.githubusercontent.com/hmontaz/hmlib.PersianDate/refs/heads/main/src/assets/icon.png" width="32"/> hmlib.PersianDate
 
 A lightweight .NET library for working with Jalali (Persian) dates. Provides a familiar `DateTime`-like API for parsing, formatting, and converting between Jalali and Gregorian calendars.
 
