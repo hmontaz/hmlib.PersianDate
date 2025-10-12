@@ -14,7 +14,7 @@ namespace hmlib.PersianDate
 	[Serializable]
 	public partial struct JalaliDateTime : ICloneable, IFormattable, IComparable, IComparable<JalaliDateTime>, IEquatable<JalaliDateTime>, IDateTime
 	{
-		DateTimeKind _kind;
+		readonly DateTimeKind _kind;
 		static JalaliHelper helper = new JalaliHelper(true);
 		long _ticks;
 		[NonSerialized]

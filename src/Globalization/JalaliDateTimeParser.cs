@@ -19,7 +19,6 @@ namespace hmlib.PersianDate.Globalization
 				throw new FormatException($"The string '{s}' is not in the correct format for '{format}'.");
 			}
 			return result;
-
 		}
 
 		public bool TryParse(string s, out JalaliDateTime result)
@@ -30,9 +29,7 @@ namespace hmlib.PersianDate.Globalization
 		public bool TryParse(string s, IFormatProvider? formatProvider, DateTimeStyles styles, out JalaliDateTime result)
 		{
 			if (s == null) throw new ArgumentNullException(nameof(s));
-			//var dateFormats = new[] { "yyyy|MM|dd", "yyyy|M|dd", "yyyy|MM|d", "yyyy|M|d", /*"yy|MM|dd", "yy|M|dd", "yy|MM|d", "yy|M|d", "" };
 			var dateFormats = new[] { "yyyy|M|d", "yy|M|d", "" };
-			//var timeFormats = new[] { "HH:mm:ss.fff", "HH:mm:ss.ff", "HH:mm:ss.f", "HH:mm:ss", "HH:mm", "HH:mm:ss.fff tt", "HH:mm:ss.ff tt", "HH:mm:ss.f tt", "HH:mm:ss tt", "HH:mm tt", "" };
 			var timeFormats = new[] {
 				"H:m:s.f tt", "H:m:s.f"
 				, "H:m:s tt", "H:m:s"
@@ -190,6 +187,13 @@ namespace hmlib.PersianDate.Globalization
 
 			public bool End => _pos >= _s.Length;
 
+            public void SkipWhitespace()
+            {
+                while (_pos < _s.Length && char.IsWhiteSpace(_s[_pos]))
+                {
+                    _pos++;
+                }
+            }
 		}
 
 		bool IsLiteral(string token) => !char.IsLetter(token[0]);
@@ -203,7 +207,7 @@ namespace hmlib.PersianDate.Globalization
 			input = normalizeDigits(input, jalaliInfo); // handle Persian/Arabic numerals
 
 			// Step 2: Tokenize format (naively, or cache later)
-			var tokens = StringTokenizer.Tokenize(format, StringTokenizer.KnownTokens).Select(a => a.Value);
+            var tokens = StringTokenizer.Tokenize(format, StringTokenizer.KnownTokens).Select(a => a.Value).ToArray();
 
 			// Step 3: Parse input based on tokens
 			var reader = new CharReader(input);
@@ -225,8 +229,9 @@ namespace hmlib.PersianDate.Globalization
 				return (int)(ms * 1000);
 			}
 
-			foreach (var token in tokens)
+            for (int tokenIndex = 0; tokenIndex < tokens.Length; tokenIndex++)
 			{
+                var token = tokens[tokenIndex];
 				if (IsLiteral(token))
 				{
 					if (!reader.Expect(token)) return failed(out result);
@@ -356,6 +361,19 @@ namespace hmlib.PersianDate.Globalization
 						return failed(out result);
 				}
 			}
+
+            if (!reader.End)
+            {
+                if ((style & DateTimeStyles.AllowTrailingWhite) != 0)
+                {
+                    reader.SkipWhitespace();
+                }
+
+                if (!reader.End)
+                {
+                    return failed(out result);
+                }
+            }
 
 			// Step 4: Fix up AM/PM
 			if (IsPM && Hour < 12) Hour += 12;

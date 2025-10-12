@@ -38,17 +38,16 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests
 		[Theory]
 		[InlineData("1391/13/16")] //invalid month number
 		[InlineData("1391/10/32")] //invalid day number
-		//[InlineData("1391/10/16 25:00")] //invalid hours [fix]
-		//[InlineData("1391/10/16 14:60")] //invalid minutes [fix]
-		//[InlineData("1391/10/16 14:43:60")] //invalid seconds [fix]
-		[InlineData("1391+6/25 14:43:12.5")] //invalid formats
-		//[InlineData("1391/01 14:43")] //invalid formats [fix]
+        [InlineData("1391/10/16 25:00")] //invalid hours
+        [InlineData("1391/10/16 14:60")] //invalid minutes
+        [InlineData("1391/10/16 14:43:60")] //invalid seconds
+        [InlineData("1391+6/25 14:43:12.5")] //invalid format
+        [InlineData("1391/01 14:43")] //invalid format
 		public void TryParseUnhappyPath(string s)
 		{
 			Assert.False(DateTime.TryParse(s, out _));
 			Assert.False(JalaliDateTime.TryParse(s, out _));
 		}
-
 
 		[Fact]
 		public void BoundryTests()
