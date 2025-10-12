@@ -126,7 +126,6 @@ namespace hmlib.PersianDateTests.JalaliDateTimeTests
 		}
 		#endregion Millisecond Tests
 
-
 		#region AM/PM Tests
 		[Theory]
 		[InlineData("12:00:00 PM", "H:mm:ss tt", 12, 0, 0, 0)]
